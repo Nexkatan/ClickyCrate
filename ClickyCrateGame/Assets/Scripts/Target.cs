@@ -15,6 +15,8 @@ public class Target : MonoBehaviour
     public int pointValue;
     public float yValueCut;
 
+    private float songModeForce = 17;
+
     public bool downBomb = false;
 
     public ParticleSystem explosionParticle;
@@ -23,12 +25,18 @@ public class Target : MonoBehaviour
 
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         targetRb = GetComponent<Rigidbody>();
-        targetRb.AddForce(RandomForce(), ForceMode.Impulse);
+        if (gameManager.isSongMode)
+        {
+            targetRb.AddForce(Vector3.up * songModeForce, ForceMode.Impulse);
+        }
+        else
+        {
+            targetRb.AddForce(RandomForce(), ForceMode.Impulse);
+        }
         targetRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque());
         targetRb.transform.position = RandomSpawnPos();
-
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()

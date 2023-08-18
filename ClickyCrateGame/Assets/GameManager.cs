@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,17 +17,16 @@ public class GameManager : MonoBehaviour
     private float spawnRate = 1;
 
     public bool isGameActive;
-    void Start()
-    {
-       
-    }
+    public bool isSongMode = true;
+
+    public AkEvent smoke;
 
     IEnumerator SpawnTarget()
     {
         while (true)
         {
             yield return new WaitForSeconds(spawnRate);
-            int index = Random.Range(0, targets.Count);
+            int index = UnityEngine.Random.Range(0, targets.Count);
             Instantiate(targets[index]);
         }
     }
@@ -53,6 +53,21 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnTarget());
         UpdateScore(0);
     }
+
+    public void SongSpawn ()
+    {
+        int index = UnityEngine.Random.Range(0, targets.Count);
+        Instantiate(targets[index]);
+    }
+
+    public void StartSongGame()
+    {
+        titleText.gameObject.SetActive(false);
+        isGameActive = true;
+        score = 0;
+        UpdateScore(0);
+    }
+
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
