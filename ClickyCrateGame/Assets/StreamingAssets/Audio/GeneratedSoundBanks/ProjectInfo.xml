@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo>
+	<Project Name="Simple Runner" GUID="{A94BEC2E-0068-48D8-935A-7771BA592212}" Generator="2022.1.4.8202"/>
+	<CacheRoot>../../../../../../gabeLC/Simple Runner/Wwise/Simple Runner/.cache</CacheRoot>
+	<Platforms>
+		<Platform Name="Windows" GUID="{45A55481-918F-408A-A4F2-DAA60F27FA4E}" BasePlatform="Windows" BasePlatformGUID="{6E0CB257-C6C8-4C5C-8366-2740DFC441EB}" Path="../../../../../../gabeLC/Simple Runner/Wwise/Simple Runner/GeneratedSoundBanks/Windows"/>
+	</Platforms>
+	<Languages>
+		<Language Name="English(US)" Id="684519430" GUID="{BED7B740-92E9-4D64-9376-0535E2F24999}" Default="true" UseAsStandIn="true"/>
+	</Languages>
+	<FileHash>{52ADA31B-13CB-1E59-2706-BF39B3B2793A}</FileHash>
+</ProjectInfo>
