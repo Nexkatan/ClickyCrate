@@ -7,13 +7,14 @@ public class Target : MonoBehaviour
 {
     private Rigidbody targetRb;
 
-    private float minSpeed = 12;
-    private float maxSpeed = 16;
-    private float maxTorque = 10;
+    private float minSpeed = 15;
+    private float maxSpeed = 17;
+    private float maxTorque = 100;
     private float xRange = 4;
     private float ySpawnPos = -6;
     public int pointValue;
     public float yValueCut;
+    private float yRandomRotation = 0.3f;
 
     private float songModeForce = 17;
 
@@ -27,16 +28,9 @@ public class Target : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         targetRb = GetComponent<Rigidbody>();
-        if (gameManager.isSongMode)
-        {
-            targetRb.AddForce(Vector3.up * songModeForce, ForceMode.Impulse);
-        }
-        else
-        {
-            targetRb.AddForce(RandomForce(), ForceMode.Impulse);
-        }
-        targetRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque());
         targetRb.transform.position = RandomSpawnPos();
+        targetRb.AddForce(RandomForce(), ForceMode.Impulse);
+        targetRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque());
     }
 
     private void Update()
@@ -59,9 +53,26 @@ public class Target : MonoBehaviour
         }
     }
 
+    Vector3 RandomDirection ()
+    {
+        if (transform.position.x < -2.5)
+        {
+            return new Vector3(Random.Range(0, yRandomRotation), 1, 0);
+        }
+        else if (transform.position.x > 2.5)
+        {
+            return new Vector3(Random.Range(-yRandomRotation, 0), 1, 0);
+        }
+        else
+        {
+            return new Vector3(Random.Range(-yRandomRotation, yRandomRotation), 1, 0);
+        }
+        
+    }
+
     Vector3 RandomForce()
     {
-        return Vector3.up * Random.Range(minSpeed, maxSpeed);
+            return RandomDirection() * Random.Range(minSpeed, maxSpeed);
     }
     float RandomTorque()
     {

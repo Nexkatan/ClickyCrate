@@ -27,8 +27,9 @@ public class BadTarget : Target
         if (other.CompareTag("Good") & downBomb)
         {
             Destroy(gameObject);
-            Destroy(other.gameObject);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+            ParticleSystem hitExplode = other.gameObject.GetComponent<Target>().explosionParticle;
+            Instantiate(hitExplode, other.transform.position, hitExplode.transform.rotation);
         }
     }
 }

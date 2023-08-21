@@ -19,8 +19,6 @@ public class GameManager : MonoBehaviour
     public bool isGameActive;
     public bool isSongMode = true;
 
-    public AkEvent smoke;
-
     IEnumerator SpawnTarget()
     {
         while (true)
